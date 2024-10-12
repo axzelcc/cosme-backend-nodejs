@@ -1,0 +1,53 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: axzelcc
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: cosme-nodejs
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: cosme-nodejs
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+        - dynamodb:GetItem
+        - dynamodb:Scan 
+      Resource:
+        - arn:aws:dynamodb:us-east-1:571600835249:table/useresTable
+
+functions:
+  hello:
+    handler: src/hello.hello
+    events:
+      - httpApi:
+          path: /
+          method: get
+  addUser:
+    handler: src/addUser.addUser
+    events:
+      - httpApi:
+          path: /user
+          method: post
+  getUsers:
+    handler: src/getUsers.getUsers
+    events:
+      - httpApi:
+          path: /user
+          method: get
+
+resources:
+  Resources:
+    usersTable:
+     Type: AWS::DynamoDB::Table
+     Properties:
+      TableName: useresTable
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST

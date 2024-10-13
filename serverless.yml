@@ -16,38 +16,38 @@ provider:
         - dynamodb:GetItem
         - dynamodb:Scan 
       Resource:
-        - arn:aws:dynamodb:us-east-1:571600835249:table/useresTable
+        - arn:aws:dynamodb:us-east-1:571600835249:table/vehiclesTable2
 
 functions:
-  hello:
-    handler: src/hello.hello
+  addVehicule:
+    handler: src/addVehicule.addVehicule
     events:
       - httpApi:
-          path: /
-          method: get
-  addUser:
-    handler: src/addUser.addUser
-    events:
-      - httpApi:
-          path: /user
+          path: /vehicule
           method: post
-  getUsers:
-    handler: src/getUsers.getUsers
+  getVehicules:
+    handler: src/getVehicules.getVehicules
     events:
       - httpApi:
-          path: /user
+          path: /vehicules
           method: get
+  getSWAPI:
+    handler: src/getSWAPI.getSWAPI
+    events:
+      - httpApi:
+          path: /vehiculesSWAPI
+          method: get   
 
 resources:
   Resources:
-    usersTable:
+    vehiclesTable2:
      Type: AWS::DynamoDB::Table
      Properties:
-      TableName: useresTable
+      TableName: vehiclesTable2
       AttributeDefinitions:
-        - AttributeName: id
+        - AttributeName: nombre
           AttributeType: S
       KeySchema:
-        - AttributeName: id
+        - AttributeName: nombre
           KeyType: HASH
       BillingMode: PAY_PER_REQUEST

@@ -8,7 +8,7 @@ const getVehicules = async(event) => {
   const vehicleSWAPI = await getSWAPI();  
 
   const result = await dynamodb.scan({
-    TableName: 'vehiclesTable2'
+    TableName: 'vehiclesTable'
   }).promise();
 
   const vehicules = result.Items;

@@ -45,14 +45,11 @@ const addVehicule = async(event) => {
   }
 
   await dynamodb.put({
-    TableName: 'vehiclesTable2',
+    TableName: 'vehiclesTable',
     Item: addVehicule
   }).promise()
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify(addVehicule),
-  }
+  return addVehicule;
 
 };
 

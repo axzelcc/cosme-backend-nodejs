@@ -16,7 +16,7 @@ provider:
         - dynamodb:GetItem
         - dynamodb:Scan 
       Resource:
-        - arn:aws:dynamodb:us-east-1:571600835249:table/vehiclesTable2
+        - arn:aws:dynamodb:us-east-1:571600835249:table/vehiclesTable
 
 functions:
   addVehicule:
@@ -36,14 +36,14 @@ functions:
     events:
       - httpApi:
           path: /vehiculesSWAPI
-          method: get   
+          method: get
 
 resources:
   Resources:
-    vehiclesTable2:
+    vehiclesTable:
      Type: AWS::DynamoDB::Table
      Properties:
-      TableName: vehiclesTable2
+      TableName: vehiclesTable
       AttributeDefinitions:
         - AttributeName: nombre
           AttributeType: S

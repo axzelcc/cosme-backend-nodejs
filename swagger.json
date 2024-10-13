@@ -1,0 +1,146 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "COSME - DOCUMENTACIÓN",
+    "version": "1.0.0",
+    "description": "Pasos para consumir las APIs de Amazon API Gateway"
+  },
+  "servers": [
+    {
+      "url": "https://15x8jguaoe.execute-api.us-east-1.amazonaws.com"
+    }
+  ],
+  "tags" : [
+    {
+      "name" : "vehículos",
+      "descripction" : "Agrega y lista los vehiculos"
+    }
+  ],
+  "paths": {
+    "/vehicules": {
+      "get": {
+        "tags" : [
+          "vehículos"
+        ],
+        "summary": "Obtener una lista de vehículos",
+        "responses": {
+          "200": {
+            "description": "Lista de vehículos obtenida con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Vehiculo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vehicule": {
+      "post": {
+        "tags" : [
+          "vehículos"
+        ],
+        "summary": "Crear un nuevo vehículo",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Vehiculo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Vehículo creado con éxito"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Vehiculo": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string"
+          },
+          "modelo": {
+            "type": "string"
+          },
+          "fabricante": {
+            "type": "string"
+          },
+          "costo_en_creditos": {
+            "type": "string"
+          },
+          "longitud": {
+            "type": "string"
+          },
+          "velocidad_atmosferica_maxima": {
+            "type": "string"
+          },
+          "tripulacion": {
+            "type": "string"
+          },
+          "pasajeros": {
+            "type": "string"
+          },
+          "capacidad_de_carga": {
+            "type": "string"
+          },
+          "consumibles": {
+            "type": "string"
+          },
+          "clase_de_vehiculo": {
+            "type": "string"
+          },
+          "pilotos": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "peliculas": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "editado": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "required": [
+          "nombre",
+          "modelo",
+          "fabricante",
+          "costo_en_creditos",
+          "longitud",
+          "velocidad_atmosferica_maxima",
+          "tripulacion",
+          "pasajeros",
+          "capacidad_de_carga",
+          "consumibles",
+          "clase_de_vehiculo",
+          "pilotos",
+          "peliculas",
+          "editado",
+          "url"
+        ]
+      }
+    }
+  }
+}

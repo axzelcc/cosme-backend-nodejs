@@ -1,69 +1,99 @@
-<!--
-title: 'AWS Simple HTTP Endpoint example in NodeJS'
-description: 'This template demonstrates how to make a simple HTTP API with Node.js running on AWS Lambda and API Gateway using the Serverless Framework.'
-layout: Doc
-framework: v4
-platform: AWS
-language: nodeJS
-authorLink: 'https://github.com/serverless'
-authorName: 'Serverless, Inc.'
-authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
--->
 
-# Serverless Framework Node HTTP API on AWS
+## RETO TÉCNICO BACKEND NODEJS - AXZEL JHUNIOR COSME CELMI
 
-This template demonstrates how to make a simple HTTP API with Node.js running on AWS Lambda and API Gateway using the Serverless Framework.
+### En este documento explicare lo que realice para la siguiente prueba: 
 
-This template does not include any kind of persistence (database). For more advanced examples, check out the [serverless/examples repository](https://github.com/serverless/examples/) which includes Typescript, Mongo, DynamoDB and other examples.
-
-## Usage
-
-### Deployment
-
-In order to deploy the example, you need to run the following command:
-
-```
-serverless deploy
+Primero instale el aws-cli y configure mi usuario AIM de AWS.
+```bash
+  aws configure
 ```
 
-After running deploy, you should see output similar to:
-
+Luego abri un CMD para instalar el framework serverless.
+```bash
+  npm i serverless -g
 ```
-Deploying "serverless-http-api" to stage "dev" (us-east-1)
+Despues cambie a una ruta donde se va a crear la aplicacion (desktop).
 
-✔ Service deployed to stack serverless-http-api-dev (91s)
-
-endpoint: GET - https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/
-functions:
-  hello: serverless-http-api-dev-hello (1.6 kB)
+```bash
+  serverless
 ```
-
-_Note_: In current form, after deployment, your API is public and can be invoked by anyone. For production deployments, you might want to configure an authorizer. For details on how to do that, refer to [HTTP API (API Gateway V2) event docs](https://www.serverless.com/framework/docs/providers/aws/events/http-api).
-
-### Invocation
-
-After successful deployment, you can call the created application via HTTP:
-
-```
-curl https://xxxxxxx.execute-api.us-east-1.amazonaws.com/
+Cuando ejecute este codigo seleccione la siguiente plantilla.
+```bash
+ > AWS - Node.js - HTTP API
 ```
 
-Which should result in response similar to:
+Por ultimo configure mi serverless.yml, si van a este archivo encontraran las "functions" y "resources" que cree para hacer un serverless deploy.
 
-```json
-{ "message": "Go Serverless v4! Your function executed successfully!" }
+Para el resource que es la conexion con DynamoDB de AWS utilice la siguiente dependencia:
+```bash
+ npm i aws-sdk
 ```
 
-### Local development
+Con esto al ejecutar serverless deploy se creara nuestro proyecto y esta listo para consumir las funciones lambda por medio de Amazon API Gateway.
 
-The easiest way to develop and test your function is to use the `dev` command:
+## EL PROYECTO ESTA DEPLOYED
 
+Rutas activas actualemente:
+
+```http
+  GET https://15x8jguaoe.execute-api.us-east-1.amazonaws.com/vehicules
 ```
-serverless dev
+
+```http
+  POST https://15x8jguaoe.execute-api.us-east-1.amazonaws.com/vehicule
+```
+## DOCUMENTACION SWAGGER
+
+Para probar las APIS desplegadas podemos ejecutar el siguiente comando:
+
+```http
+  node server.js
+```
+Luego para visualizar la WEB donde estan las APIs documentadas vamos al enalce 
+
+```http
+  http://localhost:3000/api-docs/
 ```
 
-This will start a local emulator of AWS Lambda and tunnel your requests to and from AWS Lambda, allowing you to interact with your function as if it were running in the cloud.
+Cuando entremos a la ruta podremos ver como esta documentado y hacer el consumo de las 2 Apis que documente para realizar un POST y un GET  de vehiculos.
 
-Now you can invoke the function as before, but this time the function will be executed locally. Now you can develop your function locally, invoke it, and see the results immediately without having to re-deploy.
 
-When you are done developing, don't forget to run `serverless deploy` to deploy the function to the cloud.
+## PRUEBAS UNITARIAS CON JEST Y SUPERTTEST
+
+Instalacion de dependencias
+
+```http
+  npm i -D jest supertest
+```
+
+En nuestro package.json configuramos el scrpit para el test
+```http
+  "scripts": {
+    "test" : "set NODE_OPTIONS=--experimental-vm-modules && jest"
+  }
+```
+Ahoro para ejecutar o ver las respuestas de los test ejecutamos el siguiente comando
+
+```http
+  npm test
+```
+
+Respuesta del test
+
+```http
+  $ npm test
+
+  > test
+  > set NODE_OPTIONS=--experimental-vm-modules && jest
+
+  PASS  tests/server.spec.js
+    API-TEST
+      √ GET /vehicules (561 ms)                                                                                                           
+      √ POST /vehicule (551 ms)
+
+  Test Suites: 1 passed, 1 total
+  Tests:       2 passed, 2 total
+  Snapshots:   0 total
+  Time:        2.583 s, estimated 4 s
+  Ran all test suites.
+````

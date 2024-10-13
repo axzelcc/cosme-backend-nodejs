@@ -35,23 +35,23 @@ Con esto al ejecutar serverless deploy se creara nuestro proyecto y esta listo p
 
 Rutas activas actualemente:
 
-```http
+```bash
   GET https://15x8jguaoe.execute-api.us-east-1.amazonaws.com/vehicules
 ```
 
-```http
+```bash
   POST https://15x8jguaoe.execute-api.us-east-1.amazonaws.com/vehicule
 ```
 ## DOCUMENTACION SWAGGER
 
 Para probar las APIS desplegadas podemos ejecutar el siguiente comando:
 
-```http
+```bash
   node server.js
 ```
 Luego para visualizar la WEB donde estan las APIs documentadas vamos al enalce 
 
-```http
+```bash
   http://localhost:3000/api-docs/
 ```
 
@@ -62,25 +62,25 @@ Cuando entremos a la ruta podremos ver como esta documentado y hacer el consumo 
 
 Instalacion de dependencias
 
-```http
+```bash
   npm i -D jest supertest
 ```
 
-En nuestro package.json configuramos el scrpit para el test
-```http
+En nuestro package.json configuramos el script para el test
+```bash
   "scripts": {
     "test" : "set NODE_OPTIONS=--experimental-vm-modules && jest"
   }
 ```
-Ahoro para ejecutar o ver las respuestas de los test ejecutamos el siguiente comando
+Ahora para ejecutar o ver las respuestas de los test ejecutamos el siguiente comando
 
-```http
+```bash
   npm test
 ```
 
 Respuesta del test
 
-```http
+```bash
   $ npm test
 
   > test
@@ -88,7 +88,7 @@ Respuesta del test
 
   PASS  tests/server.spec.js
     API-TEST
-      √ GET /vehicules (561 ms)                                                                                                           
+      √ GET /vehicules (561 ms)
       √ POST /vehicule (551 ms)
 
   Test Suites: 1 passed, 1 total
